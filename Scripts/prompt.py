@@ -1,4 +1,5 @@
 from .database import *
+from .config import *
 import requests
 
 
@@ -55,14 +56,14 @@ def ask(query: str, top_k: int = 5, where: dict = None) -> str:
     
     # Step 3: Call Ollama
     response = requests.post(
-        "http://localhost:11434/api/generate",
+        OLLAMA_URL,
         json={
-            "model": "qwen2.5:3b",   # adjust to your installed model
+            "model": OLLAMA_MODEL,   # adjust to your installed model
             "prompt": prompt,
             "stream": False,
             "options": {
-                "temperature": 0.1,   # low = more factual, less creative
-                "num_ctx": 4096,      # context window size
+                "temperature": TEMPERATURE,   # low = more factual, less creative
+                "num_ctx": MAX_TOKENS,      # context window size
             },
         },
         timeout=240,
