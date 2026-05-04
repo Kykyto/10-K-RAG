@@ -2,6 +2,7 @@ from Scripts.ingestion import get_10ks
 from Scripts.chunking import chunk_10k
 from Scripts.database import *
 from Scripts.prompt import ask
+from Scripts.config import *
 
 
 TICKERS = ['AAPL', 'GOOG', 'MSFT', 'TSLA', 'META', 'NVDA', 'NFLX']
@@ -30,7 +31,7 @@ if __name__ == "__main__":
         print(all_metadata[0])
 
     # Step 3: Insert chunks into the ChromaDB collection
-    collection = create_or_get_collection('./chroma_db', 'sec_10k')
+    collection = create_or_get_collection(DB_PATH, COLLECTION_NAME)
     insert_or_update_chunks(collection, all_chunks, all_metadata)
 
     # Step 4: Example query

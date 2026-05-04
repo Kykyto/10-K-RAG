@@ -1,9 +1,10 @@
+from .config import *
 import chromadb
 from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
 import hashlib
 
 
-def create_or_get_collection(path="./chroma_db", collection_name="sec_10k"):
+def create_or_get_collection(path=DB_PATH, collection_name=COLLECTION_NAME):
     embedding_fn = SentenceTransformerEmbeddingFunction(
         model_name="BAAI/bge-small-en-v1.5",
         device="cpu",

@@ -1,3 +1,4 @@
+from .config import *
 import tiktoken
 import re
 
@@ -34,8 +35,8 @@ def extract_sections(text):
 
 def chunk_section(
     section_text: str,
-    chunk_size: int = 400,
-    overlap: int = 50,
+    chunk_size: int = CHUNK_SIZE,
+    overlap: int = CHUNK_OVERLAP,
 ) -> list[str]:
     tokens = enc.encode(section_text)
     
@@ -101,12 +102,12 @@ def chunk_section(
     return chunks
 
 
-def chunk_10k(text: str, ticker: str, chunk_size: int = 400) -> list[dict]:
+def chunk_10k(text: str, ticker: str, chunk_size: int = CHUNK_SIZE, chunk_overlap: int = CHUNK_OVERLAP) -> list[dict]:
     sections = extract_sections(text)
     all_chunks = []
     
     for section in sections:
-        chunks = chunk_section(section["text"], chunk_size=chunk_size)
+        chunks = chunk_section(section["text"], chunk_size=chunk_size, overlap=chunk_overlap)
         
         for i, chunk_text in enumerate(chunks):
             all_chunks.append({
