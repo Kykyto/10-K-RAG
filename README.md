@@ -1,5 +1,7 @@
 # 📊 10-K RAG — Ask Questions About SEC Filings
 
+![Streamlit interface](image.png)
+
 A Retrieval-Augmented Generation (RAG) system that lets you chat with SEC 10-K filings using natural language. Built from scratch — no LangChain, no abstractions — to understand every layer of the RAG pipeline.
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue)
